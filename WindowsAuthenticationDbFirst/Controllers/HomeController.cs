@@ -8,15 +8,9 @@ namespace WindowsAuthenticationDbFirst.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
@@ -26,5 +20,24 @@ namespace WindowsAuthenticationDbFirst.Controllers
 
             return View();
         }
+       
+        [Authorize(Users = @"CONTOSO\Rick, CONTOSO\Keith, CONTOSO\Mike")]
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = @"CONTOSO\VBmanagers,CONTOSO\CSmanagers")]
+        public ActionResult VB_CS_Managers()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = @"VPs")]
+        public ActionResult VP()
+        {
+            return View();
+        }
+
     }
 }
